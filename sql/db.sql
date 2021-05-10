@@ -1,12 +1,12 @@
-CREATE DATABASE portefolio2;
+CREATE DATABASE IF NOT EXISTS portefolio2;
 
 USE portefolio2;
 
-CREATE TABLE products (
+CREATE TABLE IF NOT EXISTS products (
     id INT AUTO_INCREMENT,
     name varchar(32),
     price int,
-    PRIMARYKEY id
+    PRIMARY KEY (id)
 );
 
 INSERT INTO products (name, price) VALUES
@@ -15,6 +15,5 @@ INSERT INTO products (name, price) VALUES
 ('brokkolisuppe', 150),
 ('brenneslesuppe', 75);
 
-CREATE USER 'anonymous' IDENTIFIED BY 'pikachoo';
-GRANT SELECT ON products TO 'ananymous';
-
+CREATE USER IF NOT EXISTS'anonymous' IDENTIFIED BY 'pikachoo';
+GRANT SELECT ON products TO 'anonymous';
