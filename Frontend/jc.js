@@ -41,7 +41,11 @@ function the_func(data){
         var h_pris = cloned_row.querySelector(".pris")
         h_pris.innerHTML= price
 
+
+        h_list.insertBefore(cloned_row, h_list.querySelector(".container"))
         h_list.appendChild(cloned_row)
+
+
 }
 
 fetch("/api/products")
