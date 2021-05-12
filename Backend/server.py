@@ -3,7 +3,7 @@ from flask import jsonify
 import mysql.connector
 import flask
 
-app = Flask(__name__, static_folder="/var/fullstack/frontend", static_url_path="")
+app = Flask(__name__, static_folder="/var/fullstack/frontend/", static_url_path="")
 
 # app= flask.Flask(_name_)
 app.config["DEBUG"] = True
@@ -31,7 +31,7 @@ my_cursor = my_db.cursor()
 @app.route('/<path>')
 def page(path):
     print("Request recieved for {}".format(path))
-    return flask.send_from_directory('/var/fullstack', path)
+    return flask.send_from_directory('/var/fullstack/frontend/', path)
 
 
 @app.route('/products', methods=['GET'])
