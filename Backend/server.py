@@ -3,35 +3,41 @@ from flask import jsonify
 import mysql.connector
 import flask
 
-app = Flask(__name__, static_folder="C:/Users/eivin/PycharmProjects/portefolio2V2", static_url_path="")
+app = Flask(__name__, static_folder="/var/fullstack/frontend", static_url_path="")
 
 # app= flask.Flask(_name_)
 app.config["DEBUG"] = True
 
+host_='mysql1'
+user_='anonymous'
+password_='pikachoo'
+database_='portefolio2'
 
 my_db = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="kirakira22",
-        database="potet"
+        host=host_,
+        user=user_,
+        password=password_,
+        database=database_,
+        
     )
 
 
 my_cursor = my_db.cursor()
 
-my_cursor.execute("select * from products")
 
-@app.route('/', defaults={'path': 'Frontend/index.html'})
+
+@app.route('/', defaults={'path': 'index.html'})
 
 @app.route('/<path>')
 def page(path):
     print("Request recieved for {}".format(path))
-    return flask.send_from_directory('C:/Users/eivin/PycharmProjects/portefolio2V2', path)
+    return flask.send_from_directory('/var/fullstack', path)
 
 
 @app.route('/products', methods=['GET'])
 def get_drinks():
     #my_cursor.execute("SELECT * from products")
+    my_cursor.execute("select * from products")
     my_results= my_cursor.fetchall()
     print(my_results)
     return flask.jsonify(my_results)

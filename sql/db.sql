@@ -15,5 +15,5 @@ INSERT INTO products (name, price) VALUES
 ('brokkolisuppe', 150),
 ('brenneslesuppe', 75);
 
-CREATE USER IF NOT EXISTS 'anonymous' IDENTIFIED BY 'pikachoo';
-GRANT SELECT ON products TO 'ananymous';
+CREATE USER IF NOT EXISTS'anonymous' IDENTIFIED BY 'pikachoo';
+GRANT SELECT ON products TO 'anonymous';
