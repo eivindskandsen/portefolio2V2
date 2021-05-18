@@ -1,6 +1,9 @@
 var cart = [];
 var products = [];
 var logged_inn=false;
+var list=null;
+
+var h_row1 = document.getElementById("0");;
 
 function add_cart(){
 
@@ -16,13 +19,16 @@ function more_info(){
 }
 
 function the_func(data) {
+
+    console.log("Rendering data:"+data)
     var h_list = document.getElementById("container");
-    var h_row1 = document.getElementById("0");
+
 
     console.log('My DOM list: ' + h_list);
     console.log('data length:' + data.length + 'data: ' + data);
 
     for (var i = 0; i < data.length; i++) {
+        console.log("Start på en rundre for loop")
         console.log('item rendering: ' + data[i]);
 
         products[i] = data[i];
@@ -46,20 +52,36 @@ function the_func(data) {
         var h_btn2 = cloned_row.querySelector(".btn2");
         h_btn2.onclick = add_cart;
 
-        //h_list.insertBefore(cloned_row, h_list.querySelector(".container"));
+        //h_list.insertBefore(cloned_row, h_list.querySelector(".first_row"));
         h_list.appendChild(cloned_row);
 
         //document.body.appendChild(h_list);
 
-        console.log("test");
+        //console.log("test");
 
-        //h_row1.remove()
+
     }
+    console.log("Remove")
+    //h_row1.remove()
+
+}
+function remove_products(){
+    var h_list = document.getElementById("container");
+    var rows= h_list.querySelectorAll(".first_row")
+    rows.forEach(node => node.remove())
 }
 
-fetch("/products")
-    .then(response => response.json())
-    .then(data => the_func(data));
+function load_products() {
+    fetch("/products")
+        .then(response => response.json())
+        .then(data => {
+            if (h_row1 != null){
+                remove_products();
+            }
+                the_func(data);
+        });
+}
+load_products();
 
 if (logged_inn==true){
     var mysql=require('mysql')
@@ -74,7 +96,7 @@ if (logged_inn==true){
 
 function doShowAll(){
     var key="";
-    var list="<tr><th>Item</th><th>Value</th></tr>\n";
+    list="<tr><th>Item</th><th>Value</th></tr>\n";
     var i=0;
     for(i=0; i< localStorage.length; i++){
         key=localStorage.key(i);
@@ -112,7 +134,9 @@ function removeItem(){
 }
 
 function removeAll(){
-    localStorage.clear();
+    window.localStorage.clear();
+    list="<tr><th>Item</th><th>Value</th></tr>\n"
+    doShowAll()
     /*for (i=0; i<localStorage.length; i++){
         var name = localStorage.key(i);
         localStorage.removeItem(name);
