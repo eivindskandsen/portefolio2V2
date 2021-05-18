@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="stylesheet.css">
+    <script src="jc.js" ></script>
     <style>
 
     </style>
@@ -58,6 +59,29 @@
         <a href="#!" class="btn2" onclick="add_cart(this)">Add to cart</a>
       </div>
     </div>
+
+      <div class="shopping" style="text-align: center">
+  <form name="shoppinglist">
+        <fieldset>
+          <legend>Shopping cart</legend>
+          <label>Item:<input type="text" name="name"></label>
+          <label>Quantity: <input type="text" name="data"></label>
+
+          <input type="button" value="save" onclick="saveItem()">
+          <input type="button" value="update" onclick="modifyItem()">
+          <input type="button" value="delete" onclick="removeItem()">
+        </fieldset>
+        <div id="items_table" style="text-align: center">
+          <h2>Shopping list</h2>
+          <table class="center" id="list"></table>
+          <label><input type="button" value="clear" onclick="removeAll()"></label>
+          <label><input type="button" value="buy" onclick="buy()"> </label>
+        </div>
+    </form>
+</div>
+
+
+
 </div>
 
     <!-- End your project here-->

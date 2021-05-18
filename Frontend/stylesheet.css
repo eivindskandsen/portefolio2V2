@@ -18,3 +18,13 @@ body {
 
     text-align: center;
 }
+
+.shopping{
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+table.center{
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -18,7 +18,7 @@ my_db = mysql.connector.connect(
         user=user_,
         password=password_,
         database=database_,
-        
+
     )
 
 
