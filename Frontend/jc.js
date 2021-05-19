@@ -147,6 +147,7 @@ function removeAll(){
     window.localStorage.clear();
     list="<tr><th>Item</th><th>Value</th></tr>\n"
     doShowAll()
+    document.getElementById("Melding").innerHTML="";
     /*for (i=0; i<localStorage.length; i++){
         var name = localStorage.key(i);
         localStorage.removeItem(name);
