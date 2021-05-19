@@ -6,7 +6,9 @@ var list=null;
 var h_row1 = document.getElementById("0");;
 
 function add_cart(){
-
+    row=this.parentElement.parentElement
+    localStorage.setItem(products[row.id][1], 1)
+    doShowAll()
 }
 
 function more_info(){
@@ -33,12 +35,15 @@ function the_func(data) {
     for (var i = 0; i < data.length; i++) {
         console.log("Start på en rundre for loop")
         console.log('item rendering: ' + data[i]);
+        console.log(i)
 
         products[i] = data[i];
         [idP, nameP, price, summary, description, picture] = data[i];
 
         var cloned_row = h_row1.cloneNode(true);
         cloned_row.id = i;
+
+        console.log(cloned_row.id)
 
         var h_title = cloned_row.querySelector(".name");
         h_title.innerHTML = idP.toString() + " Name: " + nameP;
@@ -64,11 +69,10 @@ function the_func(data) {
         //document.body.appendChild(h_list);
 
         //console.log("test");
-
+        doShowAll()
 
     }
-    console.log("Remove")
-    //h_row1.remove()
+
 
 }
 function remove_products(){
@@ -148,4 +152,14 @@ function removeAll(){
         localStorage.removeItem(name);
 
     }*/
+}
+
+function buy(){
+    var txt;
+    if(confirm("Congratulations u get it all for free, do you want that?")){
+        txt="You said yes"
+    }else{
+        txt="You said no"
+    }
+    document.getElementById("Melding").innerHTML=txt;
 }
