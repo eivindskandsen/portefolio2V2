@@ -32,7 +32,7 @@ function the_func(data) {
         console.log('item rendering: ' + data[i]);
 
         products[i] = data[i];
-        [idP, nameP, price, summary, description] = data[i];
+        [idP, nameP, price, summary, description, picture] = data[i];
 
         var cloned_row = h_row1.cloneNode(true);
         cloned_row.id = i;
@@ -51,6 +51,9 @@ function the_func(data) {
 
         var h_btn2 = cloned_row.querySelector(".btn2");
         h_btn2.onclick = add_cart;
+
+        var h_pic =cloned_row.querySelector(".card-img");
+        h_pic.src= picture
 
         //h_list.insertBefore(cloned_row, h_list.querySelector(".first_row"));
         h_list.appendChild(cloned_row);
