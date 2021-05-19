@@ -11,10 +11,13 @@ function add_cart(){
 
 function more_info(){
     row = this.parentElement.parentElement;
-    var describ = products[row.id][4];
-    console.log(`List: ${describ}`)
     var h_describ = row.querySelector(".card-text")
-    h_describ.innerHTML = describ;
+    if(h_describ.innerHTML === products[row.id][3]){
+        h_describ.innerHTML = products[row.id][4];
+    }else{
+        h_describ.innerHTML = products[row.id][3];
+    }
+    
     
 }
 
