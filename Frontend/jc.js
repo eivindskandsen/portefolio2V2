@@ -14,7 +14,7 @@ function add_cart(){
 function more_info(){
     row = this.parentElement.parentElement;
     var h_describ = row.querySelector(".card-text")
-    if(h_describ.innerHTML === products[row.id][3]){
+    if(h_describ.innerHTML == products[row.id][3]){
         h_describ.innerHTML = products[row.id][4];
     }else{
         h_describ.innerHTML = products[row.id][3];
@@ -113,8 +113,8 @@ function doShowAll(){
         key=localStorage.key(i);
         list += "<tr><td>" + key + "</td><td>" + localStorage.getItem(key) + "</td></tr>\n";
         for(var o = 0;o<products.length; o++){
-            if(key === products[o][1] || key === o){
-                sum += products[o][2];
+            if(key == products[o][1] || key == o){
+                sum += (products[o][2] * localStorage.getItem(key));
                 break;
             }
         }
