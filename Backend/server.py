@@ -13,6 +13,8 @@ user_='anonymous'
 password_='pikachoo'
 database_='portefolio2'
 
+oath_id="480010407014-a0cc757h2fvnc66f0u24jko47rkq0noi.apps.googleusercontent.com"
+
 my_db = mysql.connector.connect(
         host=host_,
         user=user_,

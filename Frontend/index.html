@@ -3,9 +3,11 @@
   <head>
     <link rel="stylesheet" href="stylesheet.css">
     <script src="jc.js" ></script>
-    <style>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
-    </style>
+
+    <meta name="google-signin-client_id" content="480010407014-a0cc757h2fvnc66f0u24jko47rkq0noi.apps.googleusercontent.com">
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -22,6 +24,9 @@
   <body>
     <!-- Start your project here-->
     <div class="container" id="container">
+
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <a href="#" onclick="signOut();">Sign out</a>
 
         <div class="appelsin">
           <img
@@ -80,6 +85,7 @@
           <table class="center" id="list"></table>
           <label><input type="button" value="clear" onclick="removeAll()"></label>
           <label><input type="button" value="buy" onclick="buy()"> </label>
+            <p id="TotalPris"></p>
             <p id="Melding"></p>
         </div>
     </form>

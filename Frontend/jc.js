@@ -4,6 +4,7 @@ var logged_inn=false;
 var list=null;
 
 var h_row1 = document.getElementById("0");;
+load_products();
 
 function add_cart(){
     row=this.parentElement.parentElement
@@ -69,12 +70,15 @@ function the_func(data) {
         //document.body.appendChild(h_list);
 
         //console.log("test");
-        doShowAll()
+
+
+        doShowAll();
+
 
     }
-
-
 }
+
+
 function remove_products(){
     var h_list = document.getElementById("container");
     var rows= h_list.querySelectorAll(".first_row")
@@ -91,7 +95,7 @@ function load_products() {
                 the_func(data);
         });
 }
-load_products();
+
 
 if (logged_inn==true){
     var mysql=require('mysql')
@@ -108,12 +112,17 @@ function doShowAll(){
     var key="";
     var sum=0;
     list="<tr><th>Item</th><th>Value</th></tr>\n";
-    var i=0;
-    for(i=0; i< localStorage.length; i++){
+
+    var sum;
+
+    for(i=0, len=localStorage.length; i < len; ++i){
+
+
+
         key=localStorage.key(i);
         list += "<tr><td>" + key + "</td><td>" + localStorage.getItem(key) + "</td></tr>\n";
         for(var o = 0;o<products.length; o++){
-            if(key == products[o][1] || key == o){
+            if(key == products[o][1] || key -1 == o){
                 sum += (products[o][2] * localStorage.getItem(key));
                 break;
             }
@@ -124,6 +133,7 @@ function doShowAll(){
     }
     list += "<tr><td>Total price:</td><td>" + sum + "</td></tr>\n";
     document.getElementById('list').innerHTML = list;
+
 }
 
 function saveItem(){
@@ -170,4 +180,23 @@ function buy(){
         txt="You said no"
     }
     document.getElementById("Melding").innerHTML=txt;
+}
+
+function onSignIn(googleUser){
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+
+function totalPris(){
+
 }
