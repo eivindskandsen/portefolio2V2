@@ -123,7 +123,6 @@ function doShowAll(){
         list+= "<tr><td><i>empty</i></td>\n<td><i>empty</i></td></tr>";
     }
     list += "<tr><td>Total price:</td><td>" + sum + "</td></tr>\n";
-    list += "<tr><td><i>empty</i></td>\n<td><i>empty</i></td></tr>";
     document.getElementById('list').innerHTML = list;
 }
 
