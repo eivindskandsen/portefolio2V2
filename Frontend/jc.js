@@ -46,7 +46,7 @@ function the_func(data) {
         console.log(cloned_row.id)
 
         var h_title = cloned_row.querySelector(".name");
-        h_title.innerHTML = idP.toString() + " Name: " + nameP;
+        h_title.innerHTML = idP.toString() + ". " + nameP;
 
         var h_pris = cloned_row.querySelector(".pris");
         h_pris.innerHTML = price;
@@ -106,16 +106,24 @@ if (logged_inn==true){
 
 function doShowAll(){
     var key="";
+    var sum=0;
     list="<tr><th>Item</th><th>Value</th></tr>\n";
     var i=0;
     for(i=0; i< localStorage.length; i++){
         key=localStorage.key(i);
-
         list += "<tr><td>" + key + "</td><td>" + localStorage.getItem(key) + "</td></tr>\n";
+        for(var o = 0;o<products.length; o++){
+            if(key === products[o][1] || key === o){
+                sum += products[o][2];
+                break;
+            }
+        }
     }
     if (list=="<tr><th>Item</th><th>Value</th></tr>\n") {
         list+= "<tr><td><i>empty</i></td>\n<td><i>empty</i></td></tr>";
     }
+    list += "<tr><td>Total price:</td><td>" + sum + "</td></tr>\n";
+    list += "<tr><td><i>empty</i></td>\n<td><i>empty</i></td></tr>";
     document.getElementById('list').innerHTML = list;
 }
 
@@ -157,7 +165,7 @@ function removeAll(){
 
 function buy(){
     var txt;
-    if(confirm("Congratulations u get it all for free, do you want that?")){
+    if(confirm("Congratulations you get it all for free, do you want that?")){
         txt="You said yes"
     }else{
         txt="You said no"
