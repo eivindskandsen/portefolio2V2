@@ -136,14 +136,14 @@ function doShowAll(){
 }
 
 function saveItem(){
-    var name = document.forms.shoppinglist.name.value-1;
+    var name = document.forms.shoppinglist.name.value;
     var data = document.forms.shoppinglist.data.value;
     if(isNaN(name)){
         document.getElementById("Melding").innerHTML="That is not a ID. Try again";
     }else if(name > products.length){
         document.getElementById("Melding").innerHTML="There is no product with that number. Try again";
     }else{
-    localStorage.setItem(name, data);
+    localStorage.setItem(name-1, data);
     }
     doShowAll();
 }
