@@ -16,7 +16,10 @@ docker build -t python_backend ./Backend/
 
 docker run -it --rm --name pyback --network skynet -p 5000:5000 -v $pwd/backend/server.py:/var/fullstack/server.py -v $pwd/frontend/:/var/fullstack/frontend/ -t python_backend python /var/fullstack/server.py
 
+and then go into a webbrowser and type: localhost:5000
 
 
 
 We implemented the google log in but we haven't used it to any particulary feature. Log in with a gmail account.
+
+
