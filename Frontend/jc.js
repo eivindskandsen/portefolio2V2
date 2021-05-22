@@ -71,10 +71,10 @@ function the_func(data) {
         //console.log("test");
 
 
-        doShowAll();
 
 
     }
+    doShowAll()
 }
 
 
