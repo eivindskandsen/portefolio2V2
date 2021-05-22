@@ -7,8 +7,9 @@ var h_row1 = document.getElementById("0");;
 load_products();
 
 function add_cart(){
-    row=this.parentElement.parentElement
-    localStorage.setItem(products[row.id][1], 1)
+    var s = 1;
+    var ide = parseInt(this.parentElement.parentElement.id);
+    localStorage.setItem(ide, s)
     doShowAll()
 }
 
@@ -20,8 +21,6 @@ function more_info(){
     }else{
         h_describ.innerHTML = products[row.id][3];
     }
-    
-    
 }
 
 function the_func(data) {
@@ -119,12 +118,10 @@ function doShowAll(){
 
     for(i=0, len=localStorage.length; i < len; ++i){
 
-
-
         key=localStorage.key(i);
-        list += "<tr><td>" + key + "</td><td>" + localStorage.getItem(key) + "</td></tr>\n";
+        list += "<tr><td>" + (i+1) + ". " + products[key][1] + "</td><td>" + localStorage.getItem(key) + "</td></tr>\n";
         for(var o = 0;o<products.length; o++){
-            if(key == products[o][1] || key -1 == o){
+            if(key == o){
                 sum += (products[o][2] * localStorage.getItem(key));
                 break;
             }
@@ -139,14 +136,19 @@ function doShowAll(){
 }
 
 function saveItem(){
-    var name = document.forms.shoppinglist.name.value;
+    var name = document.forms.shoppinglist.name.value-1;
     var data = document.forms.shoppinglist.data.value;
+    if(isNaN(name)){
+        document.getElementById("Melding").innerHTML="That is not a ID. Try again";
+    }else if(name > products.length){
+        document.getElementById("Melding").innerHTML="There is no product with that number. Try again";
+    }else{
     localStorage.setItem(name, data);
-
+    }
     doShowAll();
 }
 function modifyItem(){
-    var mName =document.forms.shoppinglist.name.value;
+    var mName =document.forms.shoppinglist.name.value-1;
     var mdata= document.forms.shoppinglist.data.value;
 
     if(localStorage.getItem(mName) != null){
@@ -157,7 +159,7 @@ function modifyItem(){
 }
 
 function removeItem(){
-    var name = document.forms.shoppinglist.name.value;
+    var name = document.forms.shoppinglist.name.value-1;
     document.forms.shoppinglist.data.value = localStorage.removeItem(name);
     doShowAll();
 }
@@ -176,12 +178,14 @@ function removeAll(){
 
 function buy(){
     var txt;
-    if(confirm("Congratulations you get it all for free, do you want that?")){
-        txt="You said yes"
+    if(confirm("Congratulations, you get it all for free! Do you want that?")){
+        txt="Thank you for your purchase!"
+        removeAll();
     }else{
         txt="You said no"
     }
     document.getElementById("Melding").innerHTML=txt;
+    
 }
 
 function onSignIn(googleUser){
